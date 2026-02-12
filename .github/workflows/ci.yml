@@ -22,9 +22,9 @@ jobs:
     - name: Install node modules
       run: npm install
     - name: Starting the BackEnd
-      run: npm run server
+      run: npm run server &
     - name: Starting the FrontEnd
-      run: npm run start
+      run: npm run start &
     - name: Running PlayWright UI tests
       run: npm run test
       
