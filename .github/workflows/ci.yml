@@ -30,7 +30,7 @@ jobs:
     - name: Running PlayWright UI tests
       run: npm run test
       
-    deploy-be:
+    deploy_be:
       needs: build_test
       if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
       runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
           api_key: ${{ secrets.MY_RENDER_API_KEY }}
           wait_deploy: true
 
-    deploy-fe:
+    deploy_fe:
       needs: deploy_be
       if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
       runs-on: ubuntu-latest
