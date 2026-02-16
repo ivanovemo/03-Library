@@ -30,24 +30,24 @@ jobs:
     - name: Running PlayWright UI tests
       run: npm run test
       
-    deploy_be:
-      needs: build_test
-      if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
-      runs-on: ubuntu-latest
-      steps:
-        -name: Deploy to render
+  deploy_be:
+    needs: build_test
+    if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to render
         uses: JorgeLNJunior/render-deploy@v1.4.7
         with:
           service_id: ${{ secrets.BE_SERVICE }}
           api_key: ${{ secrets.MY_RENDER_API_KEY }}
           wait_deploy: true
 
-    deploy_fe:
-      needs: deploy_be
-      if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
-      runs-on: ubuntu-latest
-      steps:
-        -name: Deploy to render
+  deploy_fe:
+    needs: deploy_be
+    if: github.ref == 'refs/ehads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to render
         uses: JorgeLNJunior/render-deploy@v1.4.7
         with:
           service_id: ${{ secrets.FE_SERVICE }}
